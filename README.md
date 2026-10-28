@@ -3,7 +3,7 @@
 这是一个非官方功能概念，拟议入口为“创作页 → AI成片 → 旅行日记”。它承接小影已有模板、素材与编辑能力，新增模板初稿后的个人表达修正。这里的导航是方案设计，不代表当前小影App已采用这一布局。
 
 - [打开公开网页](https://jasonwei0501.github.io/pianyu-demo/)
-- [产品说明，5页PDF](https://jasonwei0501.github.io/pianyu-demo/product.pdf)
+- [产品说明，4页PDF](https://jasonwei0501.github.io/pianyu-demo/product.pdf)
 - [备用操作演示](https://jasonwei0501.github.io/pianyu-demo/walkthrough.html)
 三方评审与修改记录随完整提交包另附。
 
@@ -39,7 +39,7 @@
 
 后续主指标为“可接受初稿确认率”：窗口内末次反馈为可继续剪的去重任务数 / 全部有效开始任务数。重试不增加分母，示例与自带素材分开，未反馈与放弃单独报告。当前没有真实转化、留存、增长或模型效果结论。
 
-全程由AI代理制作；用户提供题目、制作约束并确认使用剪映剪旅行视频。三方评审由三个独立AI角色完成，不是真人专家或公司背书。原始版本保留，未虚构访谈、实验或个人发布成绩。
+AI 负责制作产品 Demo。
 
 ## 图片生成记录
 
@@ -64,6 +64,6 @@
 
 ## 文件
 
-`index.html`、`style.css`、`v2.css`、`app.js`、`telemetry.js`为原型源码；无构建步骤、第三方脚本、API Key或登录要求。`product.pdf`为5页产品说明，`walkthrough.mp4`为备用演示，`sample-output.webm`为从网页真实生成并下载的30秒作品，`music.ogg`为原创演示配乐，`preview.jpg`为实际页面截图。
+`index.html`、`style.css`、`v2.css`、`app.js`、`telemetry.js`为原型源码；无构建步骤、第三方脚本、API Key或登录要求。`product.pdf`为4页产品说明，`walkthrough.mp4`为备用演示，`sample-output.webm`为从网页真实生成并下载的30秒作品，`music.ogg`为原创演示配乐，`preview.jpg`为实际页面截图。
 
 本地使用任意静态HTTP服务器打开；直接双击HTML时，浏览器音视频能力可能受到限制。
