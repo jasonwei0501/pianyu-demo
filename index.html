@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f5f4f0"><meta name="description" content="片语交互演示：把周末出行的零散片段，整理成一条有自己感受的短视频。无需登录。">
+<title>片语 · 旅行片段，慢慢讲</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='17' fill='%232b4038'/%3E%3Cpath d='M20 18h24v28H20z' fill='none' stroke='%23f7f5ed' stroke-width='3'/%3E%3Cpath d='m28 25 12 7-12 7z' fill='%23f7f5ed'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+ <a class="brand" href="./" aria-label="片语首页"><span class="brand-mark"><svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="m10 8 6 4-6 4z"/></svg></span><strong>片语</strong></a>
+ <div class="project-label"><span class="separator"></span><span id="projectName">新的周末记录</span><span class="tag">交互 Demo</span></div>
+ <div class="top-actions"><span class="save-state" id="saveState"><i></i>草稿保存在本机</span><button class="text-btn" id="aboutBtn">演示说明</button><button class="outline small" id="newBtn">＋ 新建</button></div>
+</header>
+<nav class="stepbar" aria-label="创作步骤">
+ <button class="step active" data-go="1"><span>01</span>选片段</button><span class="step-line"></span>
+ <button class="step" data-go="2"><span>02</span>说一句</button><span class="step-line"></span>
+ <button class="step" data-go="3"><span>03</span>改初稿</button>
+ <span class="step-hint" id="stepHint">从相册里，选一点想留下的。</span>
+</nav>
+<main class="workspace">
+ <aside class="library">
+  <div class="section-head"><h2>这次的片段</h2><span id="mediaCount">0 段</span></div>
+  <button class="import-zone" id="importBtn"><svg viewBox="0 0 24 24"><path d="M12 16V4m-5 5 5-5 5 5M4 15v5h16v-5"/></svg><strong>导入照片 / 视频</strong><span>只在当前浏览器处理</span></button>
+  <input id="fileInput" type="file" accept="image/jpeg,image/png,image/webp,video/mp4,video/webm,video/quicktime" multiple hidden>
+  <div class="library-caption"><span>或先试试这组素材</span><button class="text-btn green" id="sampleBtn">载入海边示例 ↗</button></div>
+  <div class="media-grid" id="mediaGrid" aria-label="素材列表"></div>
+  <div class="library-empty" id="libraryEmpty"><div class="empty-frames"><span></span><span></span><span></span></div><p>片段可以是零散的。<br>故事不一定。</p></div>
+  <div class="library-footer"><span class="tiny-dot"></span><span id="libraryNote">支持 3–8 段素材，每个文件不超过 80 MB。</span></div>
+ </aside>
+ <section class="canvas-area">
+  <div class="preview-top"><span id="previewLabel">作品预览</span><span class="ratio-label">9:16 · 竖屏</span></div>
+  <div class="preview-wrap">
+   <div class="phone" id="phone"><canvas id="previewCanvas" width="540" height="960" role="img" aria-label="短视频画面预览"></canvas><div class="preview-empty" id="previewEmpty"><span class="viewfinder">⌜<span>◯</span>⌟</span><p>给这个周末<br>留一个小片段。</p><small>选好素材后，在这里预览</small></div><span class="preview-watermark">片语 · 示例</span><button id="canvasPlay" class="canvas-play" aria-label="播放预览" hidden>▶</button></div>
+   <div class="playback" id="playback"><button id="playBtn" class="play-btn" aria-label="播放 / 暂停" disabled>▶</button><input id="seek" aria-label="播放进度" type="range" min="0" max="30" step="0.05" value="0" disabled><span id="timecode">00:00 / 00:30</span></div>
+  </div>
+  <div class="preview-bottom" id="previewBottom"><span>你的片段，你的说法。</span><span>先有初稿，再慢慢改。</span></div>
+  <div class="timeline" id="timeline" hidden aria-label="分段时间线"></div>
+ </section>
+ <section class="inspector" id="inspector" aria-live="polite"></section>
+</main>
+<footer class="app-footer"><span>片语 · AI 与内容创作产品原型</span><div><a href="product.pdf" target="_blank" rel="noopener">产品说明 PDF ↗</a><a href="walkthrough.html" target="_blank" rel="noopener">操作演示 ↗</a><button class="text-btn" id="resetBtn">重置示例</button></div></footer>
+<div class="toast" id="toast" role="status"></div>
+<dialog id="aboutDialog"><div class="dialog-head"><h2>关于这个演示</h2><button class="icon-btn" data-close="aboutDialog" aria-label="关闭说明">×</button></div><p>片语帮助偶尔剪旅行视频的人，把零散片段整理成能修改的短视频初稿。</p><div class="note-block"><strong>你能实际操作的</strong><p>选素材、补一句话、生成预置初稿、改字幕、锁定片段、调整顺序、撤销、播放和下载 WebM 视频。</p><strong>这次演示的边界</strong><p>没有接入在线 AI。编排与改写使用本地规则和预置示例；不会理解你导入视频的画面或语音。示例图片由 AI 生成，并以轻微推拉组成动态片段。自带素材以本地预览和手动编排为主。导出不含音乐和旁白。</p></div><div class="scenario"><strong>试试异常流程</strong><p>模拟一次生成服务中断，看看怎样保留输入并恢复。</p><button class="outline" id="failNextBtn">让下一次生成失败</button></div><button class="primary full" data-close="aboutDialog">知道了，开始试试</button></dialog>
+<dialog id="exportDialog"><div class="dialog-head"><h2>这一段周末，可以留下了。</h2><button class="icon-btn" data-close="exportDialog" aria-label="关闭导出">×</button></div><p class="muted">导出当前画面、字幕和顺序。9:16 · 540×960 · <span id="exportDuration">30</span> 秒 · WebM · 无声</p><div class="export-cover"><img id="exportCover" alt="作品封面"><div><span class="eyebrow">本次作品</span><h3 id="exportTitle">没赶上日落的周末</h3><p>不必完美，也值得记下来。</p></div></div><label class="field-label" for="shareText">发布时可以这样写 <span>可改</span></label><textarea id="shareText" rows="3" maxlength="200">没等到日落，倒是慢慢走回来了。#周末散步 #片语</textarea><div class="export-progress" id="exportProgress" hidden><div class="progress-track"><i id="exportBar"></i></div><span id="exportStatus">正在录制画面，请保持页面打开…</span><button class="text-btn full" id="cancelExportBtn">取消导出，保留草稿</button></div><div class="export-actions"><button class="primary full" id="downloadVideoBtn">下载当前视频</button><div class="button-pair"><button class="outline" id="downloadSrtBtn">下载字幕 .srt</button><button class="outline" id="copyTextBtn">复制发布文案</button></div><button class="text-btn full" id="downloadProjectBtn">下载编排文件 .json</button></div><p class="fineprint">视频按实时速度导出，约需与作品相同的时长。若浏览器不支持，可下载字幕和草稿，或查看备用演示。</p></dialog>
+<dialog id="resetDialog"><div class="dialog-head"><h2>重新开始？</h2><button class="icon-btn" data-close="resetDialog" aria-label="关闭">×</button></div><p>这会清除当前浏览器中的创作草稿。下载过的视频和文件会保留。</p><div class="button-pair"><button class="outline" data-close="resetDialog">保留草稿</button><button class="primary" id="confirmReset">重新开始</button></div></dialog>
+<script src="app.js"></script>
+</body></html>
