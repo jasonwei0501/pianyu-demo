@@ -5,7 +5,7 @@
 - [打开公开网页](https://jasonwei0501.github.io/pianyu-demo/)
 - [产品说明，4页PDF](https://jasonwei0501.github.io/pianyu-demo/product.pdf)
 - [备用操作演示](https://jasonwei0501.github.io/pianyu-demo/walkthrough.html)
-三方评审与修改记录随完整提交包另附。
+
 
 ## 推荐演示路径
 
